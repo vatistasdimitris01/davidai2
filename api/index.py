@@ -1,11 +1,11 @@
-from flask import Flask, request, jsonify
-import torch
-from transformers import LlamaForCausalLM, LlamaTokenizer
 import os
+from flask import Flask, request, jsonify
+from transformers import LlamaTokenizer, LlamaForCausalLM
+import torch
 
 app = Flask(__name__)
 
-# Load the LLaMA model and tokenizer
+# Load the tokenizer and model dynamically to avoid large deployment packages
 model_name = 'meta-llama/LLaMA-7B'
 tokenizer = LlamaTokenizer.from_pretrained(model_name)
 model = LlamaForCausalLM.from_pretrained(model_name)
